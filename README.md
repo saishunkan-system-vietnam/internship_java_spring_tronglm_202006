@@ -50,7 +50,7 @@ Thực tập Java Spring Boot - Quản lý thiết bị - TrongLM - 202006
 	Tất cả mọi user đều có quyền mượn thiết bị, tuy nhiên cần kiểm tra thiết bị có còn trong kho hay không?
 	Không được mượn 1 thiết bị quá 30 ngày với tất cả user
 	Trường hợp là user admin mượn thiết bị, trạng thái chuyển là đã duyệt và tăng thêm 1 số thiết bị đã mượn , user thông thường là pending và không tăng số thiết bị đã mượn
-### Duyệt mượn sách
+### Duyệt mượn thiết bị
 	Chỉ Admin có quyền duyệt thiết bị, có thể thực hiện duyệt hoặc từ chối cho mượn thiết bị, trường hợp duyệt, thì tăng thêm 1 số thiết bị đã mượn.
 	Trước khi duyệt, cần kiểm tra số lượng thiết bị trong dữ liệu thiết bị còn hay không?
 ### Trả thiết bị
