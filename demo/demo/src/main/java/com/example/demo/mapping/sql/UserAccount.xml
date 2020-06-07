@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapping.MappingUserAccount">
+	<insert id="insert" parameterType="UserAccount">
+		INSERT INTO user_account
+		(nameAccount, passWord, mail, phoneNumber, delFlg,
+		roleFlg) VALUES
+		(#{nameAccount}, #{passWord}, #{mail}, #{phoneNumber},
+		#{delFlg},
+		#{roleFlg});
+	</insert>
+
+	<update id="update" parameterType="UserAccount">
+		UPDATE user_account SET
+		nameAccount = #{nameAccount}, passWord =
+		#{passWord}, = #{roleFlg},
+		creatDate = #{creatDate}, upDateDate =
+		#{upDateDate} WHERE MAIL =
+		#{mail} WHERE ID = #{id};
+	</update>
+
+	<select id="getById" parameterType="int"
+		resultType="UserAccount">
+		SELECT * FROM user_account WHERE ID = #{id};
+	</select>
+
+	<select id="getByEmail" parameterType="String"
+		resultType="UserAccount">
+		SELECT * FROM user_account WHERE mail = #{mail};
+	</select>
+
+	<select id="getAll" parameterType="UserAccount"
+		resultMap="result">
+
+		SELECT * FROM user_account ua WHERE 1 = 1
+		<if test="nameAccount != null">
+			and ua.nameAccount LIKE '%${nameAccount}%'
+		</if>
+		<if test="roleFlg != null">
+			and ua.roleFlg = #{roleFlg}
+		</if>
+		LIMIT  #{maxPageItem} 
+		OFFSET #{offset} 
+		
+	</select>
+
+	<resultMap id="result" type="UserAccount">
+		<result property="nameAccount" column="nameAccount" />
+		<result property="passWord" column="passWord" />
+		<result property="mail" column="mail" />
+		<result property="phoneNumber" column="phoneNumber" />
+		<result property="delFlg" column="delFlg" />
+		<result property="roleFlg" column="roleFlg" />
+	</resultMap>
+
+
+	<select id="getTotalUser" parameterType="UserAccount" resultType="BigInteger">
+
+		SELECT Count(*) FROM user_account ua WHERE 1 = 1
+		<if test="nameAccount != null">
+			and ua.nameAccount LIKE '%${nameAccount}%'
+		</if>
+		<if test="roleFlg != null">
+			and ua.roleFlg = #{roleFlg}
+		</if>
+
+	</select>
+	
+	
+</mapper>
