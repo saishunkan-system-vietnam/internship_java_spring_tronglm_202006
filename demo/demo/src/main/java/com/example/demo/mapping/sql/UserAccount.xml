@@ -3,26 +3,25 @@
 
 <mapper namespace="com.example.demo.mapping.MappingUserAccount">
 	<insert id="insert" parameterType="UserAccount">
-		INSERT INTO user_account
-		(nameAccount, passWord, mail, phoneNumber, delFlg,
-		roleFlg) VALUES
-		(#{nameAccount}, #{passWord}, #{mail}, #{phoneNumber},
-		#{delFlg},
-		#{roleFlg});
+		INSERT INTO user_account (name_user, pass_word, mail, phone_number, del_flg, role_flg, address) 
+		VALUES (#{nameAccount}, #{passWord}, #{mail}, #{phoneNumber}, #{delFlg}, #{roleFlg}, #{address});
 	</insert>
 
 	<update id="update" parameterType="UserAccount">
 		UPDATE user_account SET
-		nameAccount = #{nameAccount}, passWord =
-		#{passWord}, = #{roleFlg},
-		creatDate = #{creatDate}, upDateDate =
-		#{upDateDate} WHERE MAIL =
-		#{mail} WHERE ID = #{id};
+		name_user = #{nameAccount},
+		pass_word = #{passWord},
+		phone_number = #{phoneNumber},
+		del_flg = #{delFlg},
+		role_flg = #{roleFlg},
+		address = #{address},
+		up_date_date = #{upDateDate},
+		mail = #{mail} WHERE ID = #{id};
 	</update>
 
 	<select id="getById" parameterType="int"
 		resultType="UserAccount">
-		SELECT * FROM user_account WHERE ID = #{id};
+		SELECT * FROM user_account WHERE id = #{id};
 	</select>
 
 	<select id="getByEmail" parameterType="String"
@@ -32,40 +31,34 @@
 
 	<select id="getAll" parameterType="UserAccount"
 		resultMap="result">
-
 		SELECT * FROM user_account ua WHERE 1 = 1
 		<if test="nameAccount != null">
-			and ua.nameAccount LIKE '%${nameAccount}%'
+			and ua.user_account LIKE '%${nameAccount}%'
 		</if>
 		<if test="roleFlg != null">
-			and ua.roleFlg = #{roleFlg}
+			and ua.role_flg = #{roleFlg}
 		</if>
 		LIMIT  #{maxPageItem} 
-		OFFSET #{offset} 
-		
+		OFFSET #{offset} 	
 	</select>
-
-	<resultMap id="result" type="UserAccount">
-		<result property="nameAccount" column="nameAccount" />
-		<result property="passWord" column="passWord" />
-		<result property="mail" column="mail" />
-		<result property="phoneNumber" column="phoneNumber" />
-		<result property="delFlg" column="delFlg" />
-		<result property="roleFlg" column="roleFlg" />
-	</resultMap>
-
 
 	<select id="getTotalUser" parameterType="UserAccount" resultType="BigInteger">
-
 		SELECT Count(*) FROM user_account ua WHERE 1 = 1
 		<if test="nameAccount != null">
-			and ua.nameAccount LIKE '%${nameAccount}%'
+			and ua.name_user LIKE '%${nameAccount}%'
 		</if>
 		<if test="roleFlg != null">
-			and ua.roleFlg = #{roleFlg}
+			and ua.role_flg = #{roleFlg}
 		</if>
-
 	</select>
 	
-	
+	<resultMap id="result" type="UserAccount">
+		<result property="nameAccount" column="name_user" />
+		<result property="passWord" column="pass_word" />
+		<result property="mail" column="mail" />
+		<result property="phoneNumber" column="phone_number" />
+		<result property="delFlg" column="del_flg" />
+		<result property="roleFlg" column="role_flg" />	
+	</resultMap>
+
 </mapper>

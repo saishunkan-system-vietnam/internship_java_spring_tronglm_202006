@@ -12,7 +12,15 @@ public class UserAccount extends AbstractModel<UserAccount> {
 	private String phoneNumber;
 	private Integer delFlg;
 	private Integer roleFlg;
+	private String address;
 	
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getNameAccount() {
 		return nameAccount;
 	}

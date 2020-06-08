@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapping.MapperCategoryList">
+	
+	<select id="getTotalCategory" parameterType="CategoryBrand" resultType="BigInteger">
+		SELECT Count(*) FROM category_list ua WHERE 1 = 1
+		<if test="brandName != null">
+			and ua.brand_name LIKE '%${brandName}%'
+		</if>
+		<if test="idParent != null">
+			and ua.parent_id = #{idParent}
+		</if>
+	</select>
+	
+	<select id="getAll" parameterType="CategoryBrand"
+		resultMap="result">
+		SELECT * FROM category_list ua WHERE 1 = 1
+		<if test="brandName != null">
+			and ua.brand_name LIKE '%${brandName}%'
+		</if>
+		<if test="idParent != null">
+			and ua.parent_id = #{idParent}
+		</if>
+		LIMIT  #{maxPageItem} 
+		OFFSET #{offset} 	
+	</select>
+	
+	<select id="getAllParent" resultType="CategoryBrand" >
+		SELECT * FROM category_list WHERE parent_id = 0
+	</select>	
+	
+	<insert id="insert" parameterType="CategoryBrand">
+		INSERT INTO category_list (brand_name, parent_id, del_flg, creat_date)
+		VALUES (#{brandName}, #{idParent}, #{delFlg}, #{creatDate});
+	</insert>
+	
+	<update id="update" parameterType="CategoryBrand">
+		UPDATE category_list
+		SET
+		brand_name = #{brandName},
+		parent_id = #{idParent},
+		del_flg = #{delFlg},
+		update_date = #{upDateDate}
+		WHERE ID = #{id};
+	</update>
+	
+	<resultMap id="result" type="CategoryBrand">
+		<result property="id" column="id" />
+		<result property="brandName" column="brand_name" />
+		<result property="delFlg" column="del_flg" />
+		<result property="idParent" column="parent_id" />
+	</resultMap>
+	
+</mapper>

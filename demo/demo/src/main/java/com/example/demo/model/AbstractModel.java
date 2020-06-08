@@ -11,7 +11,7 @@ public class AbstractModel<T> implements Serializable {
 	private int id;
 	private LocalDate creatDate;
 	private LocalDate upDateDate;
-	private int page = 1;
+	private Integer page = 1;
 	private int maxPageItem = 10;
 	private int totalItem;
 	private int offset;
@@ -81,5 +81,4 @@ public class AbstractModel<T> implements Serializable {
 	public void setResults(List<T> results) {
 		this.results = results;
 	}
-
 }

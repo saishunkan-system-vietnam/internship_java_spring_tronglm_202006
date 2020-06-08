@@ -27,5 +27,4 @@ public class CategoryBrand extends AbstractModel<CategoryBrand> {
 		this.delFlg = delFlg;
 	}
 	
-	
 }

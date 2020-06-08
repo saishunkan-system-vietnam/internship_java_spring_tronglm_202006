@@ -27,5 +27,5 @@ public interface MappingUserAccount {
 
 	// update account
 	public void update(UserAccount userAccount);
-
+	
 }

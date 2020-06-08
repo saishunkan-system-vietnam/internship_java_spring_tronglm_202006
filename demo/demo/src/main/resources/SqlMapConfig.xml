@@ -4,10 +4,12 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="UserAccount" type="com.example.demo.model.UserAccount" />
+        <typeAlias alias="CategoryBrand" type="com.example.demo.model.CategoryBrand" />
     </typeAliases>
  
     <mappers>
         <mapper resource="com/example/demo/mapping/sql/UserAccount.xml" />
+        <mapper resource="com/example/demo/mapping/sql/CategoryList.xml" />
     </mappers>
  
 </configuration>
